@@ -8,6 +8,7 @@
 
 body {
   background-image: url(/img/Background.png);
+  background-size: cover;
   font-family: 'Roboto Bold', sans-serif;
   font-style: normal;
   font-weight: bold;
