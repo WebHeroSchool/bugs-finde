@@ -223,10 +223,12 @@ body {
 
 @keyframes rotation {
   from { transform: scale(1); }
+
   50% {
     transform: rotate(-3.08deg);
     transform: scale(1.05);
   }
+
   to {
     transform: scale(1.1);
     transform: rotate(-3.08deg);
@@ -453,7 +455,7 @@ body {
   .table-0 {
     width: 400px;
   }
-  
+
   .table-1 {
     width: 400px;
     height: 420px;
