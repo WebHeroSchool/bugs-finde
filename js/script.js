@@ -1,39 +1,41 @@
 'use strict';
 
-const d = document;
-const levels = d.querySelector('.levels');
-let levelTable = d.querySelectorAll('.level');
+const levels = document.querySelector('.levels');
+let levelTable = document.querySelectorAll('.level');
 let tableNumber = 0;
 levelTable = [].slice.call(levelTable);
 
 levels.addEventListener('click', (e) => {
   if (e.target && e.target.classList.contains('level')) {
     tableNumber = levelTable.indexOf(event.target);
-    levelTable[tableNumber].classList.add('selected-level');
+    levelTable[tableNumber].classList.add('selected-level', 'lvl-active');
     
     levelTable.forEach((item, i) => {
-      if (i != tableNumber) {
-        item.classList.remove('selected-level');
+      if (i !== tableNumber) {
+        item.classList.remove('selected-level', 'lvl-active');
       }
     });
   }
 });
 
-const start = d.querySelector('.play');
+const start = document.querySelector('.play');
 start.addEventListener('click', render);
 
 function render() {  
   let cardsTotal;
   let content = `
-  <div class="flip-card">
+  <div class="card-wrapper">
     <div class="card-inner">
-      <div class="front-side"><img class="result" src="/img/game-over.png" alt="лицевая сторона карты"></div>
-      <div class="back-side"><img class="card" src="/img/back-side.png" alt="обратная сторона карты"></div>
+      <div class="front-side"></div>
+      <div class="back-side"></div>
     </div>
   </div>`;
-  const parent = d.querySelector('.game');
-  let activeTable = d.createElement('div');
+  const parent = document.querySelector('.game');
+  let activeTable = document.createElement('div');
   
+{/* <img class="result" src="./img/game-over.png" alt="лицевая сторона карты"></img> */}
+{/* <img class="card" src="./img/back-side.png" alt="обратная сторона карты"></img> */}
+
   activeTable.classList.add('table', `table-${tableNumber}`);
 
   if (tableNumber === 0) {
@@ -49,27 +51,26 @@ function render() {
       activeTable.innerHTML += content;
       parent.append(activeTable);
     }
-    d.querySelector('.menu').classList.add('hide');
-  })
-  ();
+    document.querySelector('.menu').classList.add('hide');
+  }) ();
 
-  const cards = d.querySelectorAll('.card-inner');
-  const cardWin = Math.floor(Math.random() * cards.length);
-   
+  const cards = document.querySelectorAll('.card-inner');
+  // const cardWin = Math.floor(Math.random() * cards.length);
+  const cardWin = 1; 
   cards.forEach((item, i) => {
-    if (i == cardWin) {
-      const bug = d.querySelectorAll('.front-side')[i];
-      bug.innerHTML='<img src="/img/winner.png" class="result" alt="Ты нашел баг!">';
+    if (i === cardWin) {
+      const bug = document.querySelectorAll('.front-side')[i];
+      bug.classList.add('front-side--win');
     }
   });
-  
+  // innerHTML='<img src="./img/winner.png" class="result" alt="Ты нашел баг!">';
   let isCardFlip = false;
   
   activeTable.addEventListener('click', (e) => {      
-    if(e.target && e.target.classList.contains('card')
-    || e.target && e.target.classList.contains('result')) {
+    if(e.target && e.target.classList.contains('front-side')
+    || e.target && e.target.classList.contains('back-side')) {
       if( !isCardFlip) {
-        const parent = e.target.parentNode.parentNode;
+        const parent = e.target.parentNode;
         parent.classList.toggle('flip');
         isCardFlip = true;
       } else {        

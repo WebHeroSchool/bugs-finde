@@ -1,4 +1,4 @@
-@import url('/css/fonts.css');
+@import url('./fonts.css');
 
 * {
   box-sizing: border-box;
@@ -6,18 +6,36 @@
   padding: 0;
 }
 
+.level, .play {
+  cursor: pointer;
+}
+
+.play {
+  margin-top: 88px;
+  min-width: 352px;
+  min-height: 95px;
+  background: #D62B2E;
+  border-radius: 7px;
+  font-size: 32px;
+  color: #FFFFFF;
+}
+
+.play:hover {
+  background: blue;
+}
+
 body {
-  background-image: url(/img/Background.png);
+  background-image: url(../img/Background.png);
   background-size: cover;
   font-family: 'Roboto Bold', sans-serif;
   font-style: normal;
   font-weight: bold;
 }
 
-.container {
+/* .container {
   max-width: 70%;
   margin: auto;
-}
+} */
 
 .game {
   height: 100vh;
@@ -28,7 +46,7 @@ body {
 }
 
 .menu {
-  width: 100%;
+  width: 85%;
   position: relative;
 }
 
@@ -64,8 +82,19 @@ body {
   margin-left: 46px;
 }
 
-.selected-level {
-  color: #D62B2E;
+.lvl-active {
+  position: relative;
+}
+
+.lvl-active::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 102%;
+  width: 18px;
+  height: 18px;
+  background: #152fa1;
+  transform: rotate(45deg);
 }
 
 .level::before {
@@ -82,16 +111,6 @@ body {
 
 .level:hover::before {
   display: block;
-}
-
-button {
-  margin-top: 88px;
-  min-width: 352px;
-  min-height: 95px;
-  background: #D62B2E;
-  border-radius: 7px;
-  font-size: 32px;
-  color: #FFFFFF;
 }
 
 .first-card {
@@ -116,14 +135,16 @@ button {
 
 .table {
   display: none;
-  width: 700px;
-  align-items: start;
+  /* width: 700px; */
+  width: 100%;
+  /* align-items: start; */
 }
 
 .table-0 {
+  width: 720px;
   display: flex;
-  height: 35%;
   justify-content: space-between;
+  align-items: center;
 }
 
 .table-1 {
@@ -142,8 +163,14 @@ button {
   flex-wrap: wrap;
 }
 
-.flip-card {
-  width: 31%;
+
+
+
+.card-wrapper {
+  outline: 2px solid blue;
+  /* width: 31%; */
+  width: 218px;
+  height: 341px;
   text-align: center;
   perspective: 1200;
   -webkit-perspective: 1200;
@@ -153,19 +180,8 @@ button {
   -moz-transform-style: preserve-3d; 
 }
 
-.table-2 .flip-card {
-  width: 26%;
-}
-
-.table-2 .card-inner {
-  width: 99%;
-}
-
-.table-2 .card, .table-2 .result {
-  width: 93%;
-}
-
 .card-inner {
+  outline: 2px solid red;
   position: relative;
   width: 100%;
   transform-style: preserve-3d;
@@ -178,6 +194,12 @@ button {
 }
 
 .front-side, .back-side {
+  background-size: contain;
+  background-repeat: no-repeat;
+  outline: 2px solid yellow;
+  width: 100%;
+  /* width: 218px; */
+  height: 341px;
   position: absolute;
   top: 0;
   left: 0;
@@ -187,6 +209,8 @@ button {
 }
 
 .back-side {
+  /* width: 100%; */
+  background-image: url(../img/back-side.png);
   -webkit-transform: rotateY(0deg);
   -moz-transform: rotateY(0deg);
   -ms-transform: rotateY(0deg);
@@ -194,14 +218,17 @@ button {
 }
 
 .front-side {
+  background-image: url(../img/game-over.png);
+  /* background-size: contain; */
+  /* background-repeat: no-repeat; */
   -webkit-transform: rotateY(-180deg);
   -moz-transform: rotateY(-180deg);
   -ms-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
 
-.card, .result {
-  width: 100%;
+.front-side--win {
+  background-image: url(../img/winner.png)
 }
 
 .flip {
@@ -209,6 +236,18 @@ button {
   -moz-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
   transform: rotateY(180deg);
+}
+
+.table-2 .card-wrapper {
+  width: 26%;
+}
+
+.table-2 .card-inner {
+  width: 99%;
+}
+
+.table-2 .card, .table-2 .result {
+  width: 93%;
 }
 
 @keyframes rotation {
@@ -239,9 +278,9 @@ button {
 
 @media (max-width: 980px) {
 
-  .container {
+/*   .container {
     max-width: 92%;
-  }
+  } */
 
   .first-card, .second-card {
     width: 160px;
@@ -256,7 +295,7 @@ button {
   }
 
   .level:hover::before {
-    display: none;
+    /* display: none; */
   }
 
 }
@@ -264,20 +303,31 @@ button {
 @media (max-width: 768px) {
 
   .table-0 {
-    justify-content: space-around;
+    width: 580px;
   }
 
   .table-1 {
-    height: 95%;
+    /* height: 95%; */
   }
 
   .table-2 {
-    height: 97%;
+    /* height: 97%; */
   }
 
+  .card-wrapper {
+    /* width: 31%; */
+    width: 180px;
+    height: 282px;
+  }
+
+  .front-side, .back-side {
+    /* width: 100%; */
+    width: 180px;
+    height: 282px;
+  }  
 }
 
-@media (max-width: 610px) {
+@media (max-width: 620px) {
 
   .menu {
     max-width: 92%;
@@ -292,7 +342,11 @@ button {
     margin-left: 0;
   }
 
-  button {
+  .lvl-active::after {
+    right: 77%;
+  }
+
+  .play {
     display: block;
     margin: 40px auto;
   }
@@ -300,6 +354,22 @@ button {
   .level-choice__instruction {
     margin-bottom: 100px;
     font-size: 20px;
+  }
+
+  .front-side, .back-side {
+    /* width: 120px;
+    height: 188px; */
+    width: 155px;
+    height: 242px;
+  }
+
+  .card-wrapper {
+    width: 155px;
+    height: 242px;
+  }
+
+  .table-0 {
+    width: 500px;
   }
 
   .table-1 {
@@ -312,13 +382,17 @@ button {
 
 }
 
-@media (max-width: 520px) {
+@media (max-width: 540px) {
 
   .level {
     margin-left: 0;
   }
 
-  button {
+  .lvl-active::after {
+    right: 84%;
+  }
+
+  .play {
     min-width: 250px;
   }
 
@@ -330,29 +404,57 @@ button {
     margin-bottom: 70px;
   }
 
-  .flip-card {
-    width: 30%;
+  .front-side, .back-side {
+    width: 120px;
+    height: 188px;
+  }
+
+  .card-wrapper {
+    width: 120px;
+    height: 188px;
+  }
+
+  .table-0 {
+    width: 400px;
   }
   
   .table-1 {
     height: 62%;
   }
 
-  .table-2 {
+  /* .table-2 {
     height: 76%;
-  }
+  } */
 
 }
 
-@media (max-width: 420px) {
+@media (max-width: 430px) {
   
+  .lvl-active::after {
+    right: 88%;
+  }
+
+  .front-side, .back-side {
+    width: 100px;
+    height: 156px;
+  }
+
+  .card-wrapper {
+    width: 100px;
+    height: 156px;
+  }
+
+  .table-0 {
+    width: 340px;
+  }
+
   .table-1 {
     height: 50%;
   }
 
-  .table-2 {
+  /* .table-2 {
     height: 60%;
-  }
+  } */
 
 }
 
@@ -362,8 +464,22 @@ button {
     height: 45%;
   }
 
-  .table-2 {
-    height: 55%;
+  .front-side, .back-side {
+    width: 80px;
+    height: 125px;
   }
+
+  .card-wrapper {
+    width: 80px;
+    height: 125px;
+  }
+
+  .table-0 {
+    width: 280px;
+  }
+
+  /* .table-2 {
+    height: 55%;
+  } */
 
 }
