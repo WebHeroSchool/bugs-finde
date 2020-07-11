@@ -6,7 +6,7 @@ let levelTable = document.querySelectorAll('.level');
 let tableNumber = 0;
 levelTable = [].slice.call(levelTable);
 
-levels.addEventListener('click', (e) => {
+levels.addEventListener('click', e => {
   if (e.target && e.target.classList.contains('level')) {
     tableNumber = levelTable.indexOf(event.target);
     levelTable[tableNumber].classList.add('selected-level', 'lvl-active');
@@ -60,7 +60,7 @@ function render() {
 
   let isCardFlip = false;
   
-  activeTable.addEventListener('click', (e) => {      
+  activeTable.addEventListener('click', e => {      
     if(e.target && e.target.classList.contains('front-side')
     || e.target && e.target.classList.contains('back-side')) {
       if( !isCardFlip) {
