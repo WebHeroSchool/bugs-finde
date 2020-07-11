@@ -1,5 +1,6 @@
 'use strict';
 
+const start = document.querySelector('.play');
 const levels = document.querySelector('.levels');
 let levelTable = document.querySelectorAll('.level');
 let tableNumber = 0;
@@ -17,9 +18,6 @@ levels.addEventListener('click', (e) => {
     });
   }
 });
-
-const start = document.querySelector('.play');
-start.addEventListener('click', render);
 
 function render() {  
   let cardsTotal;
@@ -73,5 +71,7 @@ function render() {
         location.reload();
       }
     }
-  }); 
+  });
 }
+
+start.addEventListener('click', render);
