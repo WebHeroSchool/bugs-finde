@@ -21,7 +21,7 @@
 }
 
 .play:hover {
-  background: blue;
+  background-color: #152fa1;
 }
 
 body {
@@ -71,10 +71,10 @@ body {
   position: relative;
   display: block;
   margin-bottom: 24px;
+  margin-left: 46px;
   font-size: 48px;
   line-height: 59px;
   color: #FFFFFF;
-  margin-left: 46px;
 }
 
 .lvl-active {
@@ -156,9 +156,6 @@ body {
   flex-wrap: wrap;
 }
 
-
-
-
 .card-wrapper {
   width: 218px;
   height: 341px;
@@ -237,7 +234,7 @@ body {
   }
 }
 
-.card:hover {
+.back-side:hover {
   animation: .7s rotation both;
 }
 
@@ -379,6 +376,10 @@ body {
     margin: 40px auto;
   }
 
+  .level-choice__header {
+    font-size: 48px;
+  }
+
   .level-choice__instruction {
     margin-bottom: 100px;
     font-size: 20px;
@@ -427,7 +428,7 @@ body {
   }
 
   .lvl-active::after {
-    right: 84%;
+    right: 82%;
   }
 
   .play {
@@ -521,6 +522,10 @@ body {
 }
 
 @media (max-width: 375px) {
+
+  .lvl-active::after {
+    right: 93%;
+}
 
   .front-side, .back-side {
     width: 80px;
