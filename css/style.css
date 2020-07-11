@@ -1,0 +1,547 @@
+@import url('./fonts.css');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.level,
+.play {
+  cursor: pointer;
+}
+
+.play {
+  margin-top: 88px;
+  min-width: 352px;
+  min-height: 95px;
+  background: #d62b2e;
+  border-radius: 7px;
+  font-size: 32px;
+  color: #fff;
+}
+
+.play:hover {
+  background-color: #152fa1;
+}
+
+body {
+  background-image: url(../img/Background.png);
+  background-size: cover;
+  font-family: 'Roboto Bold', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.game {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  width: 85%;
+  position: relative;
+}
+
+.level-choice__header {
+  margin-bottom: 16px;
+  font-size: 54px;
+  color: #fff;
+}
+
+.level-choice__instruction {
+  display: block;
+  margin-bottom: 60px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.level-choice__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  align-items: start;
+  max-height: 300px;
+}
+
+.level {
+  position: relative;
+  display: block;
+  margin-bottom: 24px;
+  margin-left: 46px;
+  font-size: 48px;
+  line-height: 59px;
+  color: #fff;
+}
+
+.lvl-active {
+  position: relative;
+}
+
+.lvl-active::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 102%;
+  width: 18px;
+  height: 18px;
+  background: #152fa1;
+  transform: rotate(45deg);
+}
+
+.level::before {
+  display: none;
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 102%;
+  width: 18px;
+  height: 18px;
+  background: #d62b2e;
+  transform: rotate(45deg);
+}
+
+.level:hover::before {
+  display: block;
+}
+
+.first-card {
+  position: absolute;
+  left: 60%;
+  top: 35%;
+  transform: rotate(11.9deg);
+  z-index: -2;
+}
+
+.second-card {
+  position: absolute;
+  left: 69%;
+  top: 45%;
+  transform: rotate(39.25deg);
+  z-index: -1;
+}
+
+.hide {
+  display: none;
+}
+
+.table {
+  display: none;
+  width: 100%;
+}
+
+.table-0 {
+  width: 720px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-1 {
+  display: flex;
+  width: 720px;
+  height: 720px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.table-2 {
+  display: flex;
+  width: 1200px;
+  height: 720px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card-wrapper {
+  width: 218px;
+  height: 341px;
+  text-align: center;
+  perspective: 1200;
+  -webkit-perspective: 1200;
+  -moz-transform: perspective(1200px);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transition: .7s linear;
+  -webkit-transition: .7s linear;
+  -moz-transition: .7s linear;
+  -o-transition: .7s linear;
+}
+
+.front-side,
+.back-side {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 341px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.back-side {
+  background-image: url(../img/back-side.png);
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+
+.front-side {
+  background-image: url(../img/game-over.png);
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
+.front-side--win {
+  background-image: url(../img/winner.png);
+}
+
+.flip {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+@keyframes rotation {
+  from { transform: scale(1); }
+
+  50% {
+    transform: rotate(-3.08deg);
+    transform: scale(1.05);
+  }
+
+  to {
+    transform: scale(1.1);
+    transform: rotate(-3.08deg);
+  }
+}
+
+.back-side:hover {
+  animation: .7s rotation both;
+}
+
+@media (max-width: 1260px) {
+  .table-2 {
+    width: 1000px;
+    height: 620px;
+  }
+
+  .table-2 .card-wrapper {
+    width: 180px;
+    height: 282px;
+  }
+
+  .table-2 .front-side,
+  .table-2 .back-side {
+    width: 180px;
+    height: 282px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .table-2 {
+    width: 850px;
+    height: 520px;
+  }
+
+  .table-2 .card-wrapper {
+    width: 155px;
+    height: 242px;
+  }
+
+  .table-2 .front-side,
+  .table-2 .back-side {
+    width: 155px;
+    height: 242px;
+  }
+}
+
+@media (max-width: 980px) {
+  .first-card,
+  .second-card {
+    width: 160px;
+  }
+
+  .first-card {
+    left: 55%;
+  }
+
+  .second-card {
+    left: 65%;
+  }
+}
+
+@media (max-width: 890px) {
+  .table-2 {
+    width: 680px;
+    height: 420px;
+  }
+
+  .table-2 .card-wrapper {
+    width: 120px;
+    height: 188px;
+  }
+
+  .table-2 .front-side,
+  .table-2 .back-side {
+    width: 120px;
+    height: 188px;
+  }
+
+  .level:hover::before {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-0 {
+    width: 580px;
+  }
+
+  .table-1 {
+    width: 580px;
+    height: 600px;
+  }
+
+  .card-wrapper {
+    width: 180px;
+    height: 282px;
+  }
+
+  .front-side,
+  .back-side {
+    width: 180px;
+    height: 282px;
+  }
+
+  .table-2 {
+    width: 175px;
+    height: 675px;
+  }
+
+  .table-2 .card-wrapper {
+    width: 80px;
+    height: 125px;
+  }
+
+  .table-2 .front-side,
+  .table-2 .back-side {
+    width: 80px;
+    height: 125px;
+  }
+}
+
+@media (max-width: 620px) {
+  .menu {
+    max-width: 92%;
+    text-align: center;
+  }
+
+  .first-card,
+  .second-card {
+    display: none;
+  }
+
+  .level {
+    margin-left: 0;
+  }
+
+  .lvl-active::after {
+    right: 77%;
+  }
+
+  .play {
+    display: block;
+    margin: 40px auto;
+  }
+
+  .level-choice__header {
+    font-size: 48px;
+  }
+
+  .level-choice__instruction {
+    margin-bottom: 100px;
+    font-size: 20px;
+  }
+
+  .front-side,
+  .back-side {
+    width: 155px;
+    height: 242px;
+  }
+
+  .card-wrapper {
+    width: 155px;
+    height: 242px;
+  }
+
+  .table-0 {
+    width: 500px;
+  }
+
+  .table-1 {
+    width: 500px;
+    height: 520px;
+  }
+
+  .table-2 {
+    width: 175px;
+    height: 675px;
+  }
+
+  .table-2 .card-wrapper {
+    width: 80px;
+    height: 125px;
+  }
+
+  .table-2 .front-side,
+  .table-2 .back-side {
+    width: 80px;
+    height: 125px;
+  }
+}
+
+@media (max-width: 540px) {
+  .level {
+    margin-left: 0;
+  }
+
+  .lvl-active::after {
+    right: 82%;
+  }
+
+  .play {
+    min-width: 250px;
+  }
+
+  .level-choice__header {
+    font-size: 40px;
+  }
+
+  .level-choice__instruction {
+    margin-bottom: 70px;
+  }
+
+  .front-side,
+  .back-side {
+    width: 120px;
+    height: 188px;
+  }
+
+  .card-wrapper {
+    width: 120px;
+    height: 188px;
+  }
+
+  .table-0 {
+    width: 400px;
+  }
+
+  .table-1 {
+    width: 400px;
+    height: 420px;
+  }
+
+  .table-2 {
+    width: 175px;
+    height: 675px;
+  }
+
+  .table-2 .card-wrapper {
+    width: 80px;
+    height: 125px;
+  }
+
+  .table-2 .front-side,
+  .table-2 .back-side {
+    width: 80px;
+    height: 125px;
+  }
+}
+
+@media (max-width: 430px) {
+  .lvl-active::after {
+    right: 88%;
+  }
+
+  .front-side,
+  .back-side {
+    width: 100px;
+    height: 156px;
+  }
+
+  .card-wrapper {
+    width: 100px;
+    height: 156px;
+  }
+
+  .table-0 {
+    width: 340px;
+  }
+
+  .table-1 {
+    width: 340px;
+    height: 360px;
+  }
+
+  .table-2 {
+    width: 175px;
+    height: 675px;
+  }
+
+  .table-2 .card-wrapper {
+    width: 80px;
+    height: 125px;
+  }
+
+  .table-2 .front-side,
+  .table-2 .back-side {
+    width: 80px;
+    height: 125px;
+  }
+}
+
+@media (max-width: 375px) {
+  .lvl-active::after {
+    right: 93%;
+  }
+
+  .front-side,
+  .back-side {
+    width: 80px;
+    height: 125px;
+  }
+
+  .card-wrapper {
+    width: 80px;
+    height: 125px;
+  }
+
+  .table-0 {
+    width: 280px;
+  }
+
+  .table-1 {
+    width: 280px;
+    height: 300px;
+  }
+}
