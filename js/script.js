@@ -32,9 +32,6 @@ function render() {
   </div>`;
   const parent = document.querySelector('.game');
   let activeTable = document.createElement('div');
-  
-{/* <img class="result" src="./img/game-over.png" alt="лицевая сторона карты"></img> */}
-{/* <img class="card" src="./img/back-side.png" alt="обратная сторона карты"></img> */}
 
   activeTable.classList.add('table', `table-${tableNumber}`);
 
@@ -43,7 +40,7 @@ function render() {
   } else if (tableNumber === 1) {
     cardsTotal = 6;
   } else {
-    cardsTotal = 9;
+    cardsTotal = 10;
   } 
   
   (() => {
@@ -55,15 +52,14 @@ function render() {
   }) ();
 
   const cards = document.querySelectorAll('.card-inner');
-  // const cardWin = Math.floor(Math.random() * cards.length);
-  const cardWin = 1; 
+  const cardWin = Math.floor(Math.random() * cards.length);
   cards.forEach((item, i) => {
     if (i === cardWin) {
       const bug = document.querySelectorAll('.front-side')[i];
       bug.classList.add('front-side--win');
     }
   });
-  // innerHTML='<img src="./img/winner.png" class="result" alt="Ты нашел баг!">';
+
   let isCardFlip = false;
   
   activeTable.addEventListener('click', (e) => {      
